@@ -1,6 +1,18 @@
 // @ts-check
-import withNuxt from './.nuxt/eslint.config.mjs'
+import withNuxt from './.nuxt/eslint.config.mjs';
 
-export default withNuxt(
-  // Your custom configs here
-)
+export default withNuxt({
+  rules: {
+    'no-unused-vars': [
+      'warn',
+      {
+        vars: 'all',
+        args: 'after-used',
+        caughtErrors: 'all',
+        ignoreRestSiblings: false,
+        reportUsedIgnorePattern: false,
+      },
+    ],
+  },
+});
+// Your custom configs here
