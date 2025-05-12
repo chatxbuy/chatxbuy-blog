@@ -19,7 +19,7 @@ const HOST = process.env.VITE_CHATXBUY_HOST;
         <a :to="`${HOST}`">
           <img
             style="width: 144px"
-            src="@/public/images/desktop/header/basic_logo_cn_l 1.png"
+            src="@/assets/images/desktop/header/basic_logo_cn_l 1.png"
             alt="chatxbuy"
           />
         </a>
@@ -123,7 +123,7 @@ const HOST = process.env.VITE_CHATXBUY_HOST;
           <div style="padding-right: 24px">
             <a href="https://www.facebook.com/chatXbuy/" target="_blank">
               <img
-                src="@/public/images/desktop/header/Vector-FB.svg"
+                src="@/assets/images/desktop/header/Vector-FB.svg"
                 alt="FB"
               />
             </a>
@@ -132,7 +132,7 @@ const HOST = process.env.VITE_CHATXBUY_HOST;
           <div>
             <a href="https://www.instagram.com/chatxbuy/" target="_blank">
               <img
-                src="@/public/images/desktop/header/Negative-IG.svg"
+                src="@/assets/images/desktop/header/Negative-IG.svg"
                 alt="ig"
               />
             </a>

@@ -1,0 +1,352 @@
+.title-e1-mo-blog {
+  font-weight: 500;
+  font-size: 24px;
+  color: #ffffff;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  letter-spacing: 0.5px;
+}
+
+/* Mobile */
+@media (max-width: 1366px) {
+  .banner-container {
+    max-width: none;
+    width: 200%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .section-container-page-mo {
+    max-width: 343px;
+    margin: 0 auto;
+  }
+
+  /* 相關文章 */
+  .blogTopic-title-mo {
+    font-weight: 900;
+    font-size: 20px;
+    color: #060e57;
+  }
+
+  /* 訂閱代買幫Blog */
+  .Subscribe-block-gray-mo {
+    width: 343px;
+    background-color: #f8f9fa;
+    border-radius: 15px;
+    padding-top: 24px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-top: 40px;
+    height: 280px;
+  }
+
+  .Subscribe-blog-mo {
+    font-size: 20px;
+    color: #060e57;
+    font-weight: 700;
+  }
+
+  .Subscribe-blog-Button1-mo {
+    width: 311px;
+    background-color: #5974ff;
+    color: #fff;
+    font-size: 16px;
+    padding: 12px 0;
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+
+  .Subscribe-blog-Button1-mo:hover {
+    font-weight: 900;
+    cursor: pointer;
+  }
+
+  .Subscribe-blogList-mo {
+    font-size: 20px;
+    color: #060e57;
+    font-weight: 700;
+  }
+
+  /* 關於代買幫 CHATxBUY */
+  .about-block-gray-mo {
+    width: 343px;
+    background-color: #f8f9fa;
+    padding: 24px 17px;
+    border-radius: 15px;
+    margin-top: 40px;
+    margin-bottom: 80px;
+  }
+
+  .Subscribe-blog-about-mo {
+    font-size: 24px;
+    color: #060e57;
+    font-weight: 700;
+  }
+
+  .about-CHAT-BUY-mo {
+    font-size: 16px;
+    color: #495057;
+  }
+
+  .reed-more-Button {
+    width: 275px;
+    background-color: #5974ff;
+    color: #fff;
+    font-size: 16px;
+    padding: 12px 0px;
+    text-align: center;
+    border-radius: 40px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .reed-more-Button:hover {
+    cursor: pointer;
+    font-weight: 700;
+  }
+}
+
+/* 針對 iPad Pro 10.5" */
+@media (min-width: 834px) and (max-width: 1111px) {
+  .banner-container {
+    height: 250px;
+  }
+
+  .title-e1-mo-blog {
+    font-size: 28px;
+  }
+}
+
+/* 針對 iPad Pro 12.9" */
+@media (min-width: 1024px) and (max-width: 1365px) {
+  .banner-container {
+    width: 100%;
+    height: auto;
+  }
+
+  .title-e1-mo-blog {
+    top: 11vw;
+    font-size: 28px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1366px) {
+  .section-container-page {
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+
+  .banner-picture1 {
+    width: 100%;
+    height: auto;
+  }
+
+  .blog-title-c1 {
+    font-weight: 500;
+    font-size: 40px;
+    color: #ffffff;
+    position: absolute;
+    transform: translateX(-50%);
+    left: 50%;
+    letter-spacing: 3px;
+  }
+
+  .blogTopic-line {
+    border: 0.3px solid #dee2e6;
+    width: 710px;
+    margin-top: 63px;
+  }
+
+  .big-title-blog {
+    font-weight: 900;
+    font-size: 28px;
+    color: #060e57;
+    margin-bottom: 24px;
+    margin-top: 60px;
+  }
+
+  .blog-date {
+    font-size: 14px;
+    color: #868e96;
+    margin-left: 6px;
+  }
+
+  .article-Content {
+    font-size: 18px;
+    color: #495057;
+  }
+
+  .Table-Contents-gray {
+    width: 370px;
+    background-color: #f8f9fa;
+    padding: 24px;
+    border-radius: 15px;
+    margin-top: 50px;
+    margin-bottom: 44px;
+  }
+
+  .Table-Contents-title {
+    font-size: 20px;
+    color: #21328c;
+    font-weight: 900;
+    margin: 0;
+  }
+
+  .Table-Contents-title-number {
+    font-size: 16px;
+    color: #495057;
+    text-decoration: underline;
+  }
+
+  .Table-Contents-title-number:hover {
+    color: #0751a0;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .title-blog-phase {
+    font-size: 28px;
+    color: #212529;
+    font-weight: 700;
+    padding-bottom: 20px;
+  }
+
+  .article-Content-phase {
+    font-size: 18px;
+    color: #495057;
+    padding-bottom: 40px;
+  }
+
+  .Related-articles {
+    font-weight: 900;
+    font-size: 38px;
+    color: #060e57;
+    margin-bottom: 40px;
+    margin-top: 44px;
+  }
+
+  .Related-articles-time {
+    font-weight: 500;
+    font-size: 14px;
+    color: #2aa5ff;
+    margin-bottom: 12px;
+    margin-top: 20px;
+  }
+
+  .Related-articles-title {
+    font-weight: 500;
+    font-size: 20px;
+    color: #212529;
+    margin-bottom: 16px;
+  }
+
+  .Related-articles-title:hover {
+    color: #0751a0;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .blogTopic-title-hover-page {
+    font-size: 24px;
+    color: #060e57;
+    font-weight: 700;
+    margin-left: 24px;
+    margin-right: 24px;
+    padding-top: 24px;
+  }
+
+  .blogTopic-choose-hover-page {
+    font-size: 16px;
+    color: #2a40b3;
+    margin-left: 24px;
+    margin-right: 24px;
+    padding-top: 18px;
+  }
+
+  .blogTopic-choose-hover-page:hover {
+    color: #0751a0;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .blogTopic-line-hover-page {
+    border: 0.3px dashed #dee2e6;
+    margin-left: 24px;
+    margin-right: 24px;
+  }
+
+  .Subscribe-block-gray-page {
+    width: 370px;
+    height: 270px;
+    background-color: #f8f9fa;
+    border-radius: 15px;
+    padding-top: 24px;
+    padding-left: 24px;
+    padding-right: 24px;
+    margin-top: 50px;
+  }
+
+  .Find-Articles-page {
+    font-size: 24px;
+    color: #060e57;
+    font-weight: 700;
+    margin-top: 50px;
+    margin-bottom: 24px;
+  }
+
+  .Subscribe-blogList {
+    font-size: 24px;
+    color: #060e57;
+    font-weight: 700;
+  }
+
+  .Subscribe-blog-Button1 {
+    width: 311px;
+    background-color: #5974ff;
+    color: #fff;
+    font-size: 16px;
+    padding: 12px 0;
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+
+  .Subscribe-blog-Button1:hover {
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .Tags {
+    max-width: 367px;
+  }
+
+  .Tags > .btn-outline-primary {
+    color: #495057 !important;
+    border-color: #dee2e6 !important;
+    border-radius: 10px;
+  }
+
+  .about-block-gray-page {
+    width: 370px;
+    background-color: #f8f9fa;
+    padding: 24px;
+    border-radius: 15px;
+    margin-top: 50px;
+  }
+
+  .Subscribe-blogList {
+    font-size: 24px;
+    color: #060e57;
+    font-weight: 700;
+  }
+
+  .about-CHAT-BUY-page {
+    font-size: 16px;
+    color: #495057;
+  }
+}

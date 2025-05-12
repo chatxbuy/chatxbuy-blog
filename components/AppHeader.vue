@@ -23,10 +23,10 @@ onMounted(async () => {
   <div class="header" style="padding-inline: 80px">
     <div class="left-content" style="gap: 16px">
       <div>
-        <a :to="`${HOST}`">
+        <a :href="`${HOST}`">
           <img
             style="width: 104px"
-            src="@/public/images/desktop/header/basic_logo_cn_l 1.png"
+            src="@/assets/images/desktop/header/basic_logo_cn_l 1.png"
             alt="chatxbuy"
           />
         </a>
@@ -91,7 +91,7 @@ onMounted(async () => {
           class=""
           style="cursor: pointer; margin-left: 10px"
           @click="goChatbot"
-          src="@/public/images/desktop/header/Primary.svg"
+          src="@/assets/images/desktop/header/Primary.svg"
           alt="代買幫"
         />
       </div>
