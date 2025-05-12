@@ -1,126 +1,124 @@
 <script setup>
+import '@/assets/css/footer.css';
 const HOST = process.env.VITE_CHATXBUY_HOST;
 </script>
 
 <template>
   <div class="footer">
-    <div style="display: flex; flex-direction: column; align-items: center">
+    <div class="lg:flex flex-col items-center">
       <div>
         <div class="full-width-gray-line" />
       </div>
-      <div
-        style="
-          display: flex;
-          justify-content: center;
-          margin-bottom: 30px;
-          margin-top: 36px;
-        "
-      >
-        <a :to="`${HOST}`">
-          <img
-            style="width: 144px"
-            src="@/assets/images/desktop/header/basic_logo_cn_l 1.png"
-            alt="chatxbuy"
-          />
-        </a>
-      </div>
 
-      <div style="display: flex">
-        <div class="footer_herf">
-          <a
-            style="text-decoration: none; color: inherit"
-            :to="`${HOST}/page/service`"
-          >
-            <span class="button-pointer footer_text">服務介紹</span>
+      <div class="max-lg:pl-4">
+        <div class="mt-12 mb-9 lg:flex lg:justify-center lg:mb-[30px] lg:mt-9">
+          <a :href="`${HOST}`">
+            <img
+              class="w-[104px] lg:w-[144px]"
+              src="@/assets/images/desktop/header/basic_logo_cn_l 1.png"
+              alt="chatxbuy"
+            />
           </a>
         </div>
 
-        <div class="footer_span">|</div>
+        <div class="hidden lg:flex">
+          <div class="">
+            <a
+              style="text-decoration: none; color: inherit"
+              :href="`${HOST}/page/service`"
+            >
+              <span class="footer_text">服務介紹</span>
+            </a>
+          </div>
 
-        <div class="footer_herf">
-          <a
-            style="text-decoration: none; color: inherit"
-            :to="`${HOST}/page/freight`"
-          >
-            <span class="button-pointer footer_text">費用說明</span>
-          </a>
+          <div class="footer_span">|</div>
+
+          <div class="">
+            <a
+              style="text-decoration: none; color: inherit"
+              :href="`${HOST}/page/freight`"
+            >
+              <span class="footer_text">費用說明</span>
+            </a>
+          </div>
+
+          <div class="footer_span">|</div>
+
+          <div class="">
+            <a
+              style="text-decoration: none; color: inherit"
+              :href="`${HOST}/page/notice`"
+            >
+              <span class="footer_text">Q&A</span>
+            </a>
+          </div>
+
+          <div class="footer_span">|</div>
+
+          <div class="">
+            <a
+              style="text-decoration: none; color: inherit"
+              :href="`${HOST}/page/blogList`"
+            >
+              <span class="footer_text">Blog</span>
+            </a>
+          </div>
+
+          <div class="footer_span">|</div>
+
+          <div class="">
+            <a
+              style="text-decoration: none; color: inherit"
+              :href="`${HOST}/page/aboutUs`"
+            >
+              <span class="footer_text">關於我們</span>
+            </a>
+          </div>
         </div>
 
-        <div class="footer_span">|</div>
+        <div class="lg:flex justify-center gap-[46px] lg:mt-7 lg:mb-8">
+          <div class="max-lg:mb-6">
+            <a
+              style="text-decoration: none; color: inherit"
+              :href="`${HOST}/page/prohibit`"
+            >
+              <span class="footer_text">禁運商品</span>
+            </a>
+          </div>
 
-        <div class="footer_herf">
-          <a
-            style="text-decoration: none; color: inherit"
-            :to="`${HOST}/page/notice`"
-          >
-            <span class="button-pointer footer_text">Q&A</span>
-          </a>
-        </div>
+          <div class="max-lg:mb-6">
+            <a
+              style="text-decoration: none; color: inherit"
+              :href="`${HOST}/page/termsService`"
+            >
+              <span class="footer_text">服務條款</span>
+            </a>
+          </div>
 
-        <div class="footer_span">|</div>
-
-        <div class="footer_herf">
-          <a
-            style="text-decoration: none; color: inherit"
-            :to="`${HOST}/page/blogList`"
-          >
-            <span class="button-pointer footer_text">Blog</span>
-          </a>
-        </div>
-
-        <div class="footer_span">|</div>
-
-        <div class="footer_herf">
-          <a
-            style="text-decoration: none; color: inherit"
-            :to="`${HOST}/page/aboutUs`"
-          >
-            <span class="button-pointer footer_text">關於我們</span>
-          </a>
-        </div>
-      </div>
-
-      <div style="display: flex; margin-top: 28px; margin-bottom: 32px">
-        <div class="footer_herf">
-          <a
-            style="text-decoration: none; color: inherit"
-            :to="`${HOST}/page/prohibit`"
-          >
-            <span class="button-pointer footer_text">禁運商品</span>
-          </a>
-        </div>
-
-        <div class="footer_herf" style="margin-left: 46px">
-          <a
-            style="text-decoration: none; color: inherit"
-            :to="`${HOST}/page/termsService`"
-          >
-            <span class="button-pointer footer_text">服務條款</span>
-          </a>
-        </div>
-
-        <div class="footer_herf" style="margin-left: 46px">
-          <a
-            style="text-decoration: none; color: inherit"
-            :to="`${HOST}/page/privacyPolicy`"
-          >
-            <span class="button-pointer footer_text">隱私權政策</span>
-          </a>
+          <div class="max-lg:mb-6">
+            <a
+              style="text-decoration: none; color: inherit"
+              :href="`${HOST}/page/privacyPolicy`"
+            >
+              <span class="footer_text">隱私權政策</span>
+            </a>
+          </div>
         </div>
       </div>
 
       <div
-        style="
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          background-color: #2a40b3;
-          width: 100vw;
-          justify-content: center;
-        "
+        :class="[
+          'lg:flex lg:flex-col lg:items-center lg:justify-center',
+          'w-screen bg-[#2A40B3] max-lg:pl-4',
+        ]"
       >
-        <div style="display: flex; margin-top: 24px; margin-bottom: 24px">
-          <div style="padding-right: 24px">
+        <div
+          :class="[
+            'max-lg:pt-10 max-lg:pb-4 lg:py-6',
+            'flex gap-6 items-center lg:justify-center',
+          ]"
+        >
+          <div>
             <a href="https://www.facebook.com/chatXbuy/" target="_blank">
               <img
                 src="@/assets/images/desktop/header/Vector-FB.svg"
@@ -148,41 +146,3 @@ const HOST = process.env.VITE_CHATXBUY_HOST;
     </div>
   </div>
 </template>
-
-<style scope>
-.full-width-gray-line {
-  width: 100vw;
-  height: 1px;
-  background-color: #dee2e6;
-}
-
-.footer {
-  height: 370px;
-  width: 40%;
-  margin: 0 auto;
-}
-
-.footer_span {
-  display: inline;
-  margin-left: 20px;
-  margin-right: 20px;
-  color: #868e96;
-}
-
-.footer_text {
-  font-size: clamp(14px, 1.11vw, 16px);
-  color: #3a3a3a;
-}
-
-.footer_text:hover {
-  color: #0751a0;
-}
-
-.footer-blue-footer {
-  text-align: center;
-  color: #fff;
-  font-size: 14px;
-  line-height: 28px;
-  padding-bottom: 36px;
-}
-</style>
