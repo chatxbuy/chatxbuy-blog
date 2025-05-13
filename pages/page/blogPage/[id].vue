@@ -12,10 +12,11 @@ const route = useRoute();
 const router = useRouter();
 
 // GET single article
+const [id, title] = route.params.id.split('-');
+
 const { data: article, error: errorArticle } = await useAsyncData(
-  'GET single article',
+  `article-${id}`,
   async () => {
-    const [id, title] = route.params.id.split('-');
     const path = `/blog/articles/${id}`;
     const res = await $fetch(
       `${API_URL}${path}?client_id=${CLIENT_ID}&user=${USER}`
