@@ -36,7 +36,7 @@ onMounted(async () => {
       <div class="relative overflow-hidden">
         <img
           class="banner-container banner-picture1"
-          src="@/assets/images/desktop/blog/banner.svg"
+          src="@/assets/images/blog/banner.svg"
           alt="藍第一頻"
         />
 

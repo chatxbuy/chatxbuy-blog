@@ -15,7 +15,7 @@ const HOST = process.env.VITE_CHATXBUY_HOST;
           <a :href="`${HOST}`">
             <img
               class="w-[104px] lg:w-[144px]"
-              src="@/assets/images/desktop/header/basic_logo_cn_l 1.png"
+              src="@/assets/images/header/basic_logo_cn_l 1.png"
               alt="chatxbuy"
             />
           </a>
@@ -120,19 +120,13 @@ const HOST = process.env.VITE_CHATXBUY_HOST;
         >
           <div>
             <a href="https://www.facebook.com/chatXbuy/" target="_blank">
-              <img
-                src="@/assets/images/desktop/header/Vector-FB.svg"
-                alt="FB"
-              />
+              <img src="@/assets/images/header/Vector-FB.svg" alt="FB" />
             </a>
           </div>
 
           <div>
             <a href="https://www.instagram.com/chatxbuy/" target="_blank">
-              <img
-                src="@/assets/images/desktop/header/Negative-IG.svg"
-                alt="ig"
-              />
+              <img src="@/assets/images/header/Negative-IG.svg" alt="ig" />
             </a>
           </div>
         </div>

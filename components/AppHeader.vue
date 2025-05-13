@@ -1,4 +1,5 @@
 <script setup>
+import '@/assets/css/header.css';
 import { ref, onMounted } from 'vue';
 import { getExchangeRate } from '@/apis/exchangeRate';
 
@@ -20,31 +21,29 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="header" style="padding-inline: 80px">
-    <div class="left-content" style="gap: 16px">
-      <div>
+  <div class="header flex justify-between items-center lg:table lg:px-20">
+    <div class="left-content lg:gap-4">
+      <div class="max-lg:px-4 max-lg:py-2">
         <a :href="`${HOST}`">
           <img
-            style="width: 104px"
-            src="@/assets/images/desktop/header/basic_logo_cn_l 1.png"
+            class="max-lg:my-[5px] w-[104px]"
+            src="@/assets/images/header/basic_logo_cn_l 1.png"
             alt="chatxbuy"
           />
         </a>
       </div>
 
-      <p class="text-center">
+      <p class="text-center max-lg:hidden">
         今日匯率：新台幣
-        <span style="color: #3c5bff; font-weight: 600; padding-inline: 4px">{{
-          rate
-        }}</span>
+        <span class="lg:px-1 font-bold text-[#3c5bff]">{{ rate }}</span>
       </p>
     </div>
 
-    <div class="mid-content">
-      <div style="display: flex; justify-content: end">
+    <div class="mid-content max-lg:hidden">
+      <div class="flex justify-end">
         <div class="headr_link header_text">
           <a
-            style="text-decoration: none; color: inherit"
+            class="text-decoration-none text-inherit"
             :href="`${HOST}/page/service`"
           >
             <span class="header-button-pointer">服務介紹</span>
@@ -53,7 +52,7 @@ onMounted(async () => {
 
         <div class="headr_link header_text">
           <a
-            style="text-decoration: none; color: inherit"
+            class="text-decoration-none text-inherit"
             :href="`${HOST}/page/freight`"
           >
             <span class="header-button-pointer">費用說明</span>
@@ -62,7 +61,7 @@ onMounted(async () => {
 
         <div class="headr_link header_text">
           <a
-            style="text-decoration: none; color: inherit"
+            class="text-decoration-none text-inherit"
             :href="`${HOST}/page/notice`"
           >
             <span class="header-button-pointer">Q&A</span>
@@ -71,7 +70,7 @@ onMounted(async () => {
 
         <div class="headr_link header_text">
           <a
-            style="text-decoration: none; color: inherit"
+            class="text-decoration-none text-inherit"
             :href="`${HOST}/page/blogList`"
           >
             <span class="header-button-pointer">Blog</span>
@@ -80,7 +79,7 @@ onMounted(async () => {
 
         <div class="headr_link header_text">
           <a
-            style="text-decoration: none; color: inherit"
+            class="text-decoration-none text-inherit"
             :href="`${HOST}/page/aboutUs`"
           >
             <span class="header-button-pointer">關於我們</span>
@@ -88,84 +87,17 @@ onMounted(async () => {
         </div>
 
         <img
-          class=""
-          style="cursor: pointer; margin-left: 10px"
+          class="cursor-pointer lg:ml-2.5"
           @click="goChatbot"
-          src="@/assets/images/desktop/header/Primary.svg"
+          src="@/assets/images/header/Primary.svg"
           alt="代買幫"
         />
       </div>
     </div>
+
+    <!-- Mobile Burger Menu -->
+    <a :href="`${HOST}/page/tableOfContents`" class="lg:hidden mr-2.5">
+      <img src="@/assets/images/header/menu.svg" alt="burger-menu" />
+    </a>
   </div>
 </template>
-
-<style scope>
-.left-content {
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.left-content .text-center {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  margin: 0;
-}
-
-.mid-content {
-  display: table-cell;
-  height: 100%;
-  vertical-align: middle;
-}
-
-.header-button-pointer {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  height: 100%;
-  margin: 0;
-}
-
-.headr_link {
-  padding-left: 20px;
-  padding-right: 20px;
-  white-space: nowrap;
-}
-
-.header_text {
-  font-family: PingFang TC;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 22px;
-  color: #3a3a3a;
-}
-
-.headr_link:hover {
-  -webkit-text-stroke-width: 0px;
-  color: #0751a0;
-}
-
-.header {
-  display: table;
-  height: 72px;
-  width: 100%;
-  margin: 0 auto;
-  position: relative;
-}
-
-.header .left-side-content {
-  height: 100%;
-  width: 20%;
-  display: table-cell;
-  vertical-align: middle;
-}
-
-.header .mid-side-content {
-  display: table-cell;
-  height: 100%;
-  width: 80%;
-  vertical-align: middle;
-}
-</style>
