@@ -3,10 +3,21 @@
 @theme {
   --color-primary: #060e57;
   --color-secondary: #2aa5ff;
+  --color-gray: #f8f9fa;
+  --color-error: #ea4747;
 }
 
 body {
   overflow-x: hidden;
+}
+
+@layer components {
+  .form-error {
+    @apply h-0 text-error;
+    & span {
+      @apply flex gap-1 items-center pt-1;
+    }
+  }
 }
 
 .html-content {

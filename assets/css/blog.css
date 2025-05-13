@@ -31,46 +31,6 @@
     color: #060e57;
   }
 
-  /* 訂閱代買幫Blog */
-  .Subscribe-block-gray-mo {
-    width: 343px;
-    background-color: #f8f9fa;
-    border-radius: 15px;
-    padding-top: 24px;
-    padding-left: 16px;
-    padding-right: 16px;
-    margin-top: 40px;
-    height: 280px;
-  }
-
-  .Subscribe-blog-mo {
-    font-size: 20px;
-    color: #060e57;
-    font-weight: 700;
-  }
-
-  .Subscribe-blog-Button1-mo {
-    width: 311px;
-    background-color: #5974ff;
-    color: #fff;
-    font-size: 16px;
-    padding: 12px 0;
-    text-align: center;
-    border-radius: 10px;
-    margin-top: 20px;
-  }
-
-  .Subscribe-blog-Button1-mo:hover {
-    font-weight: 900;
-    cursor: pointer;
-  }
-
-  .Subscribe-blogList-mo {
-    font-size: 20px;
-    color: #060e57;
-    font-weight: 700;
-  }
-
   /* 關於代買幫 CHATxBUY */
   .about-block-gray-mo {
     width: 343px;
@@ -79,12 +39,6 @@
     border-radius: 15px;
     margin-top: 40px;
     margin-bottom: 80px;
-  }
-
-  .Subscribe-blog-about-mo {
-    font-size: 24px;
-    color: #060e57;
-    font-weight: 700;
   }
 
   .about-CHAT-BUY-mo {
@@ -280,45 +234,12 @@
     margin-right: 24px;
   }
 
-  .Subscribe-block-gray-page {
-    width: 370px;
-    height: 270px;
-    background-color: #f8f9fa;
-    border-radius: 15px;
-    padding-top: 24px;
-    padding-left: 24px;
-    padding-right: 24px;
-    margin-top: 50px;
-  }
-
   .Find-Articles-page {
     font-size: 24px;
     color: #060e57;
     font-weight: 700;
     margin-top: 50px;
     margin-bottom: 24px;
-  }
-
-  .Subscribe-blogList {
-    font-size: 24px;
-    color: #060e57;
-    font-weight: 700;
-  }
-
-  .Subscribe-blog-Button1 {
-    width: 311px;
-    background-color: #5974ff;
-    color: #fff;
-    font-size: 16px;
-    padding: 12px 0;
-    text-align: center;
-    border-radius: 10px;
-    margin-top: 20px;
-  }
-
-  .Subscribe-blog-Button1:hover {
-    font-weight: 700;
-    cursor: pointer;
   }
 
   .Tags {
@@ -337,12 +258,6 @@
     padding: 24px;
     border-radius: 15px;
     margin-top: 50px;
-  }
-
-  .Subscribe-blogList {
-    font-size: 24px;
-    color: #060e57;
-    font-weight: 700;
   }
 
   .about-CHAT-BUY-page {

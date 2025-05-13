@@ -4,6 +4,7 @@ import { useRoute, useRouter } from 'vue-router';
 import { getSingleArticle, getHotArticles } from '@/apis/blog';
 import { formatArticles } from '@/utils/format';
 
+const HOST = process.env.VITE_CHATXBUY_HOST;
 const route = useRoute();
 const router = useRouter();
 
@@ -47,8 +48,8 @@ onMounted(async () => {
     </section>
 
     <section class="section-container-page">
-      <div class="lg:flex">
-        <div class="lg:max-w-[710px]">
+      <div class="flex max-lg:flex-col max-lg:items-center">
+        <div class="lg:w-[710px] grow">
           <!-- Article content -->
           <section :class="['text-primary px-4 pt-10 font-bold ', 'text-2xl ']">
             {{ article?.title }}
@@ -57,7 +58,9 @@ onMounted(async () => {
           <section v-html="article?.body" class="html-content" />
 
           <section style="padding-block: 64px">
-            <a to="/page/blogList" class="reed-more-Button"> 回首頁 > </a>
+            <a :href="`${HOST}/page/blogList`" class="reed-more-Button">
+              回首頁 >
+            </a>
           </section>
 
           <!-- 相關文章 -->
@@ -97,9 +100,11 @@ onMounted(async () => {
           </div>
         </div>
 
-        <div class="max-lg: max-w-[343px] mx-auto">
+        <div class="w-88 lg:mx-10">
           <!-- 訂閱代買幫Blog -->
-          <!-- <BlogSubscribeDesktop /> -->
+          <div class="my-10">
+            <BlogSubscribeDesktop />
+          </div>
 
           <!-- 標籤 -->
           <div class="Tags mt-10">
