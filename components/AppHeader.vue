@@ -3,7 +3,7 @@ import '@/assets/css/header.css';
 import { ref, onMounted } from 'vue';
 import { getExchangeRate } from '@/apis/exchangeRate';
 
-const HOST = process.env.VITE_CHATXBUY_HOST;
+const HOST = import.meta.env.VITE_CHATXBUY_HOST;
 const rate = ref(null);
 
 const goChatbot = () => {

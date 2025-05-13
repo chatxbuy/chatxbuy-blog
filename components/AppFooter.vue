@@ -1,6 +1,6 @@
 <script setup>
 import '@/assets/css/footer.css';
-const HOST = process.env.VITE_CHATXBUY_HOST;
+const HOST = import.meta.env.VITE_CHATXBUY_HOST;
 </script>
 
 <template>

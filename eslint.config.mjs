@@ -13,6 +13,8 @@ export default withNuxt({
         reportUsedIgnorePattern: false,
       },
     ],
+
+    'vue/html-self-closing': 'off',
   },
 });
 // Your custom configs here

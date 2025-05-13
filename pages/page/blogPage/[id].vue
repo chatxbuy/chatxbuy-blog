@@ -1,33 +1,48 @@
 <script setup>
 import '@/assets/css/blog.css';
 import { useRoute, useRouter } from 'vue-router';
-import { getSingleArticle, getHotArticles } from '@/apis/blog';
 import { formatArticles } from '@/utils/format';
 
-const HOST = process.env.VITE_CHATXBUY_HOST;
+const HOST = import.meta.env.VITE_CHATXBUY_HOST;
+const API_URL = import.meta.env.VITE_API_URL;
+const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
+const USER = import.meta.env.VITE_USER;
+
 const route = useRoute();
 const router = useRouter();
 
-let article = reactive({});
-let articlesRelated = reactive([]);
+// GET single article
+const { data: article, error: errorArticle } = await useAsyncData(
+  'GET single article',
+  async () => {
+    const [id, title] = route.params.id.split('-');
+    const path = `/blog/articles/${id}`;
+    const res = await $fetch(
+      `${API_URL}${path}?client_id=${CLIENT_ID}&user=${USER}`
+    );
+    const article = res.article;
 
-const fetchData = async () => {
-  const [id, title] = route.params.id.split('-');
-  const _article = await getSingleArticle(id);
-
-  // Wrong title in URL, redirect
-  if (title !== _article?.title) {
-    router.replace({ path: `/page/blogPage/${id}-${_article?.title}` });
-    return;
+    // Redirect for google search
+    if (title !== article?.title) {
+      await router.replace(`/page/blogPage/${id}-${article?.title}`);
+      return;
+    }
+    return article;
   }
+);
 
-  Object.assign(article, _article);
-  Object.assign(articlesRelated, formatArticles(await getHotArticles(3)));
-};
-
-onMounted(async () => {
-  await fetchData();
-});
+// GET related articles
+const { data: articlesRelated, error: errorRelated } = await useAsyncData(
+  'GET related articles',
+  async () => {
+    const limit = 3;
+    const path = '/blog/articles/hot';
+    const res = await $fetch(
+      `${API_URL}${path}?client_id=${CLIENT_ID}&user=${USER}&limit=${limit}`
+    );
+    return formatArticles(res.articles);
+  }
+);
 </script>
 
 <template>
@@ -55,7 +70,8 @@ onMounted(async () => {
             {{ article?.title }}
           </section>
 
-          <section v-html="article?.body" class="html-content" />
+          <!-- eslint-disable-next-line vue/no-v-html -->
+          <section class="html-content" v-html="article?.body" />
 
           <section style="padding-block: 64px">
             <a :href="`${HOST}/page/blogList`" class="reed-more-Button">
@@ -71,28 +87,24 @@ onMounted(async () => {
 
             <div class="flex max-lg:flex-col gap-4 lg:gap-8 pb-20">
               <div
-                v-for="article in articlesRelated"
-                :key="article.id"
+                v-for="item in articlesRelated"
+                :key="item.id"
                 class="max-lg:flex gap-4 lg:w-1/3"
               >
                 <div class="blog-img-wrap w-1/3 lg:w-full">
                   <img
-                    :src="article?.cover"
+                    :src="item?.cover"
                     alt=""
                     class="w-full h-full rounded-lg"
                   />
                 </div>
 
-                <RouterLink
-                  :to="{
-                    path: `/page/blogPage/${article?.id}-${article?.title}`,
-                  }"
-                >
+                <RouterLink :to="`/page/blogPage/${item?.id}-${item?.title}`">
                   <p class="Related-articles-time text-sm text-secondary">
-                    {{ article?.date }}
+                    {{ item?.date }}
                   </p>
                   <p class="Related-articles-title">
-                    {{ article?.title }}
+                    {{ item?.title }}
                   </p>
                 </RouterLink>
               </div>
