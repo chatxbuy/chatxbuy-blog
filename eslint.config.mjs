@@ -16,5 +16,11 @@ export default withNuxt({
 
     'vue/html-self-closing': 'off',
   },
+
+  languageOptions: {
+    globals: {
+      queryCollection: 'readonly',
+    },
+  },
 });
 // Your custom configs here

@@ -36,7 +36,7 @@ const CHATXBUY_HOST = import.meta.env.VITE_CHATXBUY_HOST;
           <div class="">
             <a
               style="text-decoration: none; color: inherit"
-              :href="`${HOST}/page/freight`"
+              :href="`${CHATXBUY_HOST}/page/freight`"
             >
               <span class="footer_text">費用說明</span>
             </a>
