@@ -9,4 +9,13 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()] as any,
   },
+  // content: {
+  //   build: {
+  //     markdown: {
+  //       toc: {
+  //         depth: 3, // include h3 headings
+  //       },
+  //     },
+  //   },
+  // },
 });
