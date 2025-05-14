@@ -1,21 +1,23 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: navibluer/chatxbuy-blog
   branch: main # Branch to update (optional; defaults to master)
 
-media_folder: static/img
+media_folder: public/img
 public_folder: /img
 
 collections:
   - name: 'blog'
-    label: 'Blog'
-    folder: 'content/blog'
+    label: 'Blog' # label in admin
+    folder: 'content/blog' # save blog in this folder
     format: 'frontmatter'
-    create: true
+    create: true # allow create new blog in folder
     slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
     editor:
       preview: false
     fields:
       - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Cover', name: 'cover', widget: 'image' }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
-      - { label: 'Description', name: 'description', widget: 'string' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
+      - { label: 'Tags', name: 'tags', widget: 'list' }
