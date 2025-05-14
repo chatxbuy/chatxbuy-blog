@@ -1,6 +1,6 @@
 <script setup>
 import '@/assets/css/footer.css';
-const HOST = import.meta.env.VITE_CHATXBUY_HOST;
+const CHATXBUY_HOST = import.meta.env.VITE_CHATXBUY_HOST;
 </script>
 
 <template>
@@ -12,7 +12,7 @@ const HOST = import.meta.env.VITE_CHATXBUY_HOST;
 
       <div class="max-lg:pl-4">
         <div class="mt-12 mb-9 lg:flex lg:justify-center lg:mb-[30px] lg:mt-9">
-          <a :href="`${HOST}`">
+          <a :href="`${CHATXBUY_HOST}`">
             <img
               class="w-[104px] lg:w-[144px]"
               src="@/assets/images/header/basic_logo_cn_l 1.png"
@@ -25,7 +25,7 @@ const HOST = import.meta.env.VITE_CHATXBUY_HOST;
           <div class="">
             <a
               style="text-decoration: none; color: inherit"
-              :href="`${HOST}/page/service`"
+              :href="`${CHATXBUY_HOST}/page/service`"
             >
               <span class="footer_text">服務介紹</span>
             </a>
@@ -47,7 +47,7 @@ const HOST = import.meta.env.VITE_CHATXBUY_HOST;
           <div class="">
             <a
               style="text-decoration: none; color: inherit"
-              :href="`${HOST}/page/notice`"
+              :href="`${CHATXBUY_HOST}/page/notice`"
             >
               <span class="footer_text">Q&A</span>
             </a>
@@ -58,7 +58,7 @@ const HOST = import.meta.env.VITE_CHATXBUY_HOST;
           <div class="">
             <a
               style="text-decoration: none; color: inherit"
-              :href="`${HOST}/page/blogList`"
+              :href="`${CHATXBUY_HOST}/page/blogList`"
             >
               <span class="footer_text">Blog</span>
             </a>
@@ -69,7 +69,7 @@ const HOST = import.meta.env.VITE_CHATXBUY_HOST;
           <div class="">
             <a
               style="text-decoration: none; color: inherit"
-              :href="`${HOST}/page/aboutUs`"
+              :href="`${CHATXBUY_HOST}/page/aboutUs`"
             >
               <span class="footer_text">關於我們</span>
             </a>
@@ -80,7 +80,7 @@ const HOST = import.meta.env.VITE_CHATXBUY_HOST;
           <div class="max-lg:mb-6">
             <a
               style="text-decoration: none; color: inherit"
-              :href="`${HOST}/page/prohibit`"
+              :href="`${CHATXBUY_HOST}/page/prohibit`"
             >
               <span class="footer_text">禁運商品</span>
             </a>
@@ -89,7 +89,7 @@ const HOST = import.meta.env.VITE_CHATXBUY_HOST;
           <div class="max-lg:mb-6">
             <a
               style="text-decoration: none; color: inherit"
-              :href="`${HOST}/page/termsService`"
+              :href="`${CHATXBUY_HOST}/page/termsService`"
             >
               <span class="footer_text">服務條款</span>
             </a>
@@ -98,7 +98,7 @@ const HOST = import.meta.env.VITE_CHATXBUY_HOST;
           <div class="max-lg:mb-6">
             <a
               style="text-decoration: none; color: inherit"
-              :href="`${HOST}/page/privacyPolicy`"
+              :href="`${CHATXBUY_HOST}/page/privacyPolicy`"
             >
               <span class="footer_text">隱私權政策</span>
             </a>

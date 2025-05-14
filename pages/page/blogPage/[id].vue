@@ -3,7 +3,7 @@ import '@/assets/css/blog.css';
 import { useRoute, useRouter } from 'vue-router';
 import { formatArticles } from '@/utils/format';
 
-const HOST = import.meta.env.VITE_CHATXBUY_HOST;
+const CHATXBUY_HOST = import.meta.env.VITE_CHATXBUY_HOST;
 const API_URL = import.meta.env.VITE_API_URL;
 const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
 const USER = import.meta.env.VITE_USER;
@@ -75,7 +75,10 @@ const { data: articlesRelated, error: errorRelated } = await useAsyncData(
           <section class="html-content" v-html="article?.body" />
 
           <section style="padding-block: 64px">
-            <a :href="`${HOST}/page/blogList`" class="reed-more-Button">
+            <a
+              :href="`${CHATXBUY_HOST}/page/blogList`"
+              class="reed-more-Button"
+            >
               回首頁 >
             </a>
           </section>
