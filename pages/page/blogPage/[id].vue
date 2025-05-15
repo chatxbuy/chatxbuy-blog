@@ -42,8 +42,6 @@ const { data: article, error: errorArticle } = await useAsyncData(
     } else {
       // CMS blog
       const article = await queryCollection('blog').path(`/blog/${id}`).first();
-
-      console.log({ article });
       return article;
     }
   }
