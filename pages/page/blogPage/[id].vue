@@ -13,22 +13,39 @@ const router = useRouter();
 
 // GET single article
 const [id, title] = route.params.id.split('-');
+const isPixnetBlog = !id.includes('b');
 
 const { data: article, error: errorArticle } = await useAsyncData(
   `article-${id}`,
   async () => {
-    const path = `/blog/articles/${id}`;
-    const res = await $fetch(
-      `${API_URL}${path}?client_id=${CLIENT_ID}&user=${USER}`
-    );
-    const article = res.article;
+    let path = '';
 
-    // Redirect for google search
-    if (title !== article?.title) {
-      await router.replace(`/page/blogPage/${id}-${article?.title}`);
-      return;
+    if (isPixnetBlog) {
+      path = `/blog/articles/${id}`;
+    } else {
+      path = `/blog/${id}`;
     }
-    return article;
+
+    // Pixnet blog
+    if (isPixnetBlog) {
+      const res = await $fetch(
+        `${API_URL}${path}?client_id=${CLIENT_ID}&user=${USER}`
+      );
+      const article = res.article;
+
+      // Redirect for google search
+      if (title !== article?.title) {
+        await router.replace(`/page/blogPage/${id}-${article?.title}`);
+        return;
+      }
+      return article;
+    } else {
+      // CMS blog
+      const article = await queryCollection('blog').path(`/blog/${id}`).first();
+
+      console.log({ article });
+      return article;
+    }
   }
 );
 
@@ -71,8 +88,19 @@ const { data: articlesRelated, error: errorRelated } = await useAsyncData(
             {{ article?.title }}
           </section>
 
-          <!-- eslint-disable-next-line vue/no-v-html -->
-          <section class="html-content" v-html="article?.body" />
+          <section
+            v-if="article && isPixnetBlog"
+            class="html-content"
+            v-html="article?.body"
+          />
+
+          <section v-if="article && !isPixnetBlog" class="html-content">
+            <ContentRenderer
+              v-if="article"
+              :value="article"
+              class="prose prose-neutral"
+            />
+          </section>
 
           <section style="padding-block: 64px">
             <a
