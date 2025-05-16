@@ -12,7 +12,10 @@ const route = useRoute();
 const router = useRouter();
 
 // GET single article
-const [id, title] = route.params.id.split('-');
+const part = route.params.id.split('-');
+const id = part[0];
+const title = part.slice(1).join('-');
+
 const isPixnetBlog = !id.includes('b');
 
 const { data: article, error: errorArticle } = await useAsyncData(
@@ -41,7 +44,10 @@ const { data: article, error: errorArticle } = await useAsyncData(
       return article;
     } else {
       // CMS blog
-      const article = await queryCollection('blog').path(`/blog/${id}`).first();
+      console.log(`/blog/${id}-${title}`);
+      const article = await queryCollection('blog')
+        .path(`/blog/${id}-${title}`)
+        .first();
       return article;
     }
   }
