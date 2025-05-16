@@ -1,0 +1,9 @@
+services:
+  cms:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - '3003:3003'
+    environment:
+      NODE_ENV: production
