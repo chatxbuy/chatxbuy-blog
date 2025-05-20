@@ -8,6 +8,7 @@ tags:
   - b
   - c
   - d
+pin: true
 ---
 ***test***
 
