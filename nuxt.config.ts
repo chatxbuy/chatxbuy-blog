@@ -2,7 +2,17 @@
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineNuxtConfig({
-  compatibilityDate: '2024-11-01',
+  app: {
+    head: {
+      title: 'ChatXBuy Blog CMS',
+      meta: [
+        {
+          name: 'description',
+          content: 'ChatXBuy Blog Content Management System',
+        },
+      ],
+    },
+  },
   devtools: { enabled: true },
   modules: ['@nuxt/eslint', '@nuxt/content'],
   css: ['~/assets/css/main.css'],

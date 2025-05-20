@@ -47,6 +47,7 @@ const { data: article, error: errorArticle } = await useAsyncData(
       const article = await queryCollection('blog')
         .path(`/blog/${id}-${title}`)
         .first();
+
       return article;
     }
   }

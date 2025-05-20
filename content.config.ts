@@ -6,10 +6,12 @@ export default defineContentConfig({
       type: 'page',
       source: '**/*.md',
       schema: z.object({
+        articleId: z.string(),
         title: z.string(),
         cover: z.string(),
         date: z.string(),
         tags: z.array(z.string()),
+        pinned: z.boolean(),
       }),
     }),
   },
