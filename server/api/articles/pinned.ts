@@ -3,6 +3,7 @@ export default defineEventHandler(async (event) => {
     .where('pinned', '=', true)
     .select('articleId', 'path', 'title', 'cover', 'date', 'pinned')
     .order('date', 'DESC')
+    .limit(3)
     .all();
 
   return articles;
