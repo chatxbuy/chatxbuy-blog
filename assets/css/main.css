@@ -55,9 +55,3 @@ body {
 .Subscribe-block-gray > .form-control {
   background-color: transparent !important;
 }
-
-.blog-img-wrap {
-  overflow: hidden;
-  aspect-ratio: 16 / 9;
-  flex-shrink: 0;
-}

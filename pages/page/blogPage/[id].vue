@@ -9,7 +9,6 @@ const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
 const USER = import.meta.env.VITE_USER;
 
 const route = useRoute();
-const router = useRouter();
 
 // GET single article
 const part = route.params.id.split('-');
@@ -35,12 +34,6 @@ const { data: article, error: errorArticle } = await useAsyncData(
         `${API_URL}${path}?client_id=${CLIENT_ID}&user=${USER}`
       );
       const article = res.article;
-
-      // Redirect for google search
-      if (title !== article?.title) {
-        await router.replace(`/page/blogPage/${id}-${article?.title}`);
-        return;
-      }
       return article;
     } else {
       // CMS blog
@@ -55,14 +48,13 @@ const { data: article, error: errorArticle } = await useAsyncData(
 
 // GET related articles
 const { data: articlesRelated, error: errorRelated } = await useAsyncData(
-  'GET related articles',
+  `article-related-${id}`,
   async () => {
-    const limit = 3;
-    const path = '/blog/articles/hot';
-    const res = await $fetch(
-      `${API_URL}${path}?client_id=${CLIENT_ID}&user=${USER}&limit=${limit}`
-    );
-    return formatArticles(res.articles);
+    const res = await $fetch('/api/articles/related', {
+      query: { id },
+    });
+    console.log({ res });
+    return formatArticles(res);
   }
 );
 </script>
@@ -135,7 +127,7 @@ const { data: articlesRelated, error: errorRelated } = await useAsyncData(
                   />
                 </div>
 
-                <RouterLink :to="`/page/blogPage/${item?.id}-${item?.title}`">
+                <RouterLink :to="item?.path">
                   <p class="Related-articles-time text-sm text-secondary">
                     {{ item?.date }}
                   </p>
@@ -160,15 +152,15 @@ const { data: articlesRelated, error: errorRelated } = await useAsyncData(
 
             <div class="flex flex-wrap gap-3 mt-4">
               <button
-                v-for="data in article?.tags"
-                :key="data"
+                v-for="tag in article?.tags"
+                :key="tag"
                 disabled
                 :class="[
                   'text-gray-500 border border-gray-300 ',
                   'text-lg rounded-md px-2 py-1',
                 ]"
               >
-                {{ data?.tag }}
+                {{ tag }}
               </button>
             </div>
           </div>
