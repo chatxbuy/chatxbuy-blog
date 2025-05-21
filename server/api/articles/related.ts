@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
   const targetDate = targetArticle?.date;
 
   const articles = await queryCollection(event, 'blog')
-    .where('date', '>', targetDate)
+    .where('date', '<', targetDate)
     .select('articleId', 'path', 'title', 'cover', 'date', 'pinned')
     .order('date', 'DESC') // sort by date
     .limit(3)
@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
 
   if (articles.length < 3) {
     const articlesMore = await queryCollection(event, 'blog')
-      .where('date', '<', targetDate)
+      .where('date', '>', targetDate)
       .select('articleId', 'path', 'title', 'cover', 'date', 'pinned')
       .order('date', 'DESC') // sort by date
       .limit(3 - articles.length)
