@@ -53,7 +53,6 @@ const { data: articlesRelated, error: errorRelated } = await useAsyncData(
     const res = await $fetch('/api/articles/related', {
       query: { id },
     });
-    console.log({ res });
     return formatArticles(res);
   }
 );
