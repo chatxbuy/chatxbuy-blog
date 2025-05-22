@@ -1,5 +1,9 @@
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+
 export default defineEventHandler((event) => {
-  const ORIGIN = process.env.VITE_CHATXBUY_HOST as string;
+  const ORIGIN = process.env.VITE_CHATXBUY_HOST ?? '';
 
   event.node.res.setHeader('Access-Control-Allow-Origin', ORIGIN);
   event.node.res.setHeader('Access-Control-Allow-Methods', 'GET');

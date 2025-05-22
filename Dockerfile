@@ -15,7 +15,7 @@ RUN pnpm i
 COPY . ./
 
 # Build the project
-RUN pnpm build
+RUN pnpm generate && pnpm build
 
 # Build Stage 2
 
