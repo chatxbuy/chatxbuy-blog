@@ -5,7 +5,7 @@ dotenv.config();
 export default defineEventHandler((event) => {
   const ORIGIN = process.env.VITE_CHATXBUY_HOST ?? '';
 
-  event.node.res.setHeader('Access-Control-Allow-Origin', ORIGIN);
+  event.node.res.setHeader('Access-Control-Allow-Origin', '*');
   event.node.res.setHeader('Access-Control-Allow-Methods', 'GET');
   event.node.res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
