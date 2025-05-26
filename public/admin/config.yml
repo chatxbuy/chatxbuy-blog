@@ -2,9 +2,7 @@ backend:
   name: github
   repo: JOHNBASS/blog-chatxbuy
   branch: main # Branch to update (optional; defaults to master)
-  auth:
-    clientId: Ov23liijRwtah6qkJY0i
-    clientSecret: dc19ad54150f1102c194e7222d15bbff2c335f03
+  base_url: https://auth.chatxbuy.com
 
 media_folder: public/img
 public_folder: /img
