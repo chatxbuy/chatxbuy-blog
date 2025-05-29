@@ -15,34 +15,16 @@ const part = route.params.id.split('-');
 const id = part[0];
 const title = part.slice(1).join('-');
 
-const isPixnetBlog = !id.includes('b');
-
 const { data: article, error: errorArticle } = await useAsyncData(
   `article-${id}`,
   async () => {
-    let path = '';
+    // CMS blog
+    const encodedTitle = encodeURIComponent(title);
+    const article = await queryCollection('blog')
+      .path(`/blog/${id}-${encodedTitle}`)
+      .first();
 
-    if (isPixnetBlog) {
-      path = `/blog/articles/${id}`;
-    } else {
-      path = `/blog/${id}`;
-    }
-
-    // Pixnet blog
-    if (isPixnetBlog) {
-      const res = await $fetch(
-        `${API_URL}${path}?client_id=${CLIENT_ID}&user=${USER}`
-      );
-      const article = res.article;
-      return article;
-    } else {
-      // CMS blog
-      const article = await queryCollection('blog')
-        .path(`/blog/${id}-${title}`)
-        .first();
-
-      return article;
-    }
+    return article;
   }
 );
 
