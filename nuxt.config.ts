@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     url: HOST,
     name: 'ChatXBuy Blog CMS',
   },
+
   app: {
     head: {
       title: 'ChatXBuy Blog CMS',
@@ -24,12 +25,20 @@ export default defineNuxtConfig({
       ],
     },
   },
+
   compatibilityDate: '2025-05-22',
   css: ['~/assets/css/main.css'],
   devtools: { enabled: true },
   modules: ['@nuxt/eslint', '@nuxt/content', '@nuxtjs/sitemap'],
+
   vite: {
     plugins: [tailwindcss()],
+  },
+
+  content: {
+    renderer: {
+      anchorLinks: false,
+    },
   },
 
   sitemap: {

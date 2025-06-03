@@ -61,13 +61,7 @@ const { data: articlesRelated, error: errorRelated } = await useAsyncData(
             {{ article?.title }}
           </section>
 
-          <section
-            v-if="article && isPixnetBlog"
-            class="html-content"
-            v-html="article?.body"
-          />
-
-          <section v-if="article && !isPixnetBlog" class="html-content">
+          <section v-if="article" class="html-content">
             <ContentRenderer
               v-if="article"
               :value="article"
