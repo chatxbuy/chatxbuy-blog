@@ -7,9 +7,25 @@ const CHATXBUY_HOST = import.meta.env.VITE_CHATXBUY_HOST;
 const route = useRoute();
 
 // GET single article
-const part = route.params.id.split('-');
+const part = route.params.slug.split('-');
 const id = part[0];
 const title = part.slice(1).join('-');
+
+useHead({
+  title: title,
+  meta: [
+    {
+      name: 'title',
+      content: title,
+    },
+  ],
+  link: [
+    {
+      rel: 'canonical',
+      href: `https://blog.chatxbuy.com/page/blogPage/${id}-${title}`,
+    },
+  ],
+});
 
 const { data: article, error: errorArticle } = await useAsyncData(
   `article-${id}`,
