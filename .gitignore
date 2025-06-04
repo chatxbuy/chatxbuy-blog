@@ -13,8 +13,6 @@ node_modules
 logs
 *.log
 
-# deploy script
-deploy-if-updated.sh
 
 # Misc
 .DS_Store
