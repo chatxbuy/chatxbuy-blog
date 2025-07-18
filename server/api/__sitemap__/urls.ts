@@ -7,7 +7,7 @@ export default defineSitemapEventHandler(async (event) => {
     .all();
 
   return articles.map((article) => ({
-    loc: article.path.replace('/blog', '/page/blogPage'),
+    loc: decodeURIComponent(article.path).replace('/blog', '/page/blogPage'),
     lastmod: article.date,
     images: [
       {
