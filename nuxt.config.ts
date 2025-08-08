@@ -1,11 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from '@tailwindcss/vite';
 
-const dynamicRoutes = async () => {
-  const articles = await queryCollection('blog').select('path').all();
-  return articles?.map((article) => article.path) ?? [];
-};
-
 const HOST = 'https://blog.chatxbuy.com';
 
 export default defineNuxtConfig({
