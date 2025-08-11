@@ -10,6 +10,7 @@ if [ "$LOCAL_HASH" != "$REMOTE_HASH" ]; then
     echo "New commits found. Pulling and rebuilding..."
     git checkout main
     git pull
+    cp public/admin/config.prod.yml public/admin/config.yml
     /usr/bin/docker-compose up --build -d
 else
     echo "No update."

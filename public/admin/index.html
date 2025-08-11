@@ -10,5 +10,33 @@
   <body>
     <!-- Include the script that builds the page and powers Netlify CMS -->
     <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+    <script src="https://unpkg.com/slugify/slugify.js"></script>
+    <script>
+      const SlugTitleControl = createClass({
+        componentDidMount() {
+          const title = this.props.entry.getIn(['data', 'title']) || '';
+
+          if (!this.props.value && title) {
+            this.props.onChange(
+              slugify(title, {
+                remove: /[^\u4e00-\u9fa5\w\s-]/g,
+                lower: true,
+                strict: true,
+              })
+            );
+          }
+        },
+
+        render() {
+          return h('input', {
+            type: 'text',
+            value: this.props.value || '',
+            onInput: (e) => this.props.onChange(e.target.value),
+          });
+        },
+      });
+
+      CMS.registerWidget('slugTitle', SlugTitleControl);
+    </script>
   </body>
 </html>

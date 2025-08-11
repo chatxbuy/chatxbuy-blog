@@ -1,0 +1,37 @@
+backend:
+  name: github
+  repo: chatxbuy/chatxbuy-blog
+  branch: main # Branch to update (optional; defaults to master)
+  base_url: https://auth.chatxbuy.com
+
+media_folder: public/img
+public_folder: /img
+
+collections:
+  - name: 'blog'
+    label: 'Blog' # label in admin
+    folder: 'content/blog' # save blog in this folder
+    format: 'frontmatter'
+    create: true # allow create new blog in folder
+    slug: '{{articleId}}-{{slugTitle}}'
+    editor:
+      preview: false
+    fields:
+      - {
+          label: 'Article ID',
+          name: 'articleId',
+          widget: 'string',
+          hint: '文章 ID，用於生成 URL',
+        }
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - {
+          label: 'Slug Title',
+          name: 'slugTitle',
+          widget: 'slugTitle',
+          hint: '自動生成可用於 URL 的標題',
+        }
+      - { label: 'Cover', name: 'cover', widget: 'image' }
+      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+      - { label: 'Tags', name: 'tags', widget: 'list' }
+      - { label: 'Pinned', name: 'pinned', widget: 'boolean' }
