@@ -76,9 +76,10 @@ if [ "$LOCAL_HASH" != "$REMOTE_HASH" ]; then
         fi
     done
 
-    git add content/blog/*.md
+    git add *.md
     git commit -m "Auto update path and rename files"
     git push origin main
+    cd ../..
 
     # update config
     cp public/admin/config.prod.yml public/admin/config.yml
