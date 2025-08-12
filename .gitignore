@@ -26,6 +26,3 @@ logs
 
 # copy config for different env
 public/admin/config.yml
-
-# ignore content update of file by bash script 
-content/blog/

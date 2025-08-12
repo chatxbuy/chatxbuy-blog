@@ -11,6 +11,7 @@ if [ "$LOCAL_HASH" != "$REMOTE_HASH" ]; then
     git checkout main
     git pull
 
+    # create path in front matter, and rename file
     cd content/blog || exit 1
 
     for file in *.md; do
@@ -75,6 +76,11 @@ if [ "$LOCAL_HASH" != "$REMOTE_HASH" ]; then
         fi
     done
 
+    git add content/blog/*.md
+    git commit -m "Auto update path and rename files"
+    git push origin main
+
+    # update config
     cp public/admin/config.prod.yml public/admin/config.yml
     /usr/bin/docker-compose up --build -d
 else
