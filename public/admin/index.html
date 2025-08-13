@@ -10,5 +10,33 @@
   </head>
   <body>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script>
+      CMS.registerEventListener({
+        name: 'preSave',
+        handler({ entry }) {
+          const data = entry.get('data');
+          const articleId = data.get('articleId') || '';
+          const title = data.get('title') || '';
+          const existingPath = data.get('path') || '';
+
+          // 只在 path 為空時生成
+          if (existingPath.trim()) return entry;
+
+          if (!articleId || !title) return entry;
+
+          const cleanTitle = title
+            .normalize('NFKC')
+            .replace(
+              /[，。、；：？！“”‘’（）【】《》〈〉『』「」—…·:;,.?!'"(){}\[\]\/\\]/g,
+              '-'
+            )
+            .replace(/-+/g, '-')
+            .replace(/^-|-$/g, '');
+
+          const newPath = `/blog/${articleId}-${cleanTitle}`;
+          return entry.setIn(['data', 'path'], newPath);
+        },
+      });
+    </script>
   </body>
 </html>
