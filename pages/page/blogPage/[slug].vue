@@ -31,7 +31,8 @@ const { data: article, error: errorArticle } = await useAsyncData(
   `article-${id}`,
   async () => {
     // CMS blog
-    const path = `/blog/${id}-${title}`;
+    const encodedTitle = encodeURIComponent(title);
+    const path = `/blog/${id}-${encodedTitle}`;
     const article = await queryCollection('blog').path(path).first();
     return article;
   }
