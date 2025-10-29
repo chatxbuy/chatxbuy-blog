@@ -25,13 +25,15 @@
           if (!articleId || !title) return entry;
 
           const cleanTitle = title
+            .trim()
             .normalize('NFKC')
             .replace(
-              /[，。、；：？！“”‘’（）【】《》〈〉『』「」—…·:;,.?!'"(){}\[\]\/\\]/g,
+              /[\s，。、；：？！""''（）【】《》〈〉『』「」—…·:;,.?!'"(){}\[\]\/\\]+/g,
               '-'
             )
             .replace(/-+/g, '-')
-            .replace(/^-|-$/g, '');
+            .replace(/^-|-$/g, '')
+            .toLowerCase();
 
           const newPath = `/blog/${articleId}-${cleanTitle}`;
           return entry.setIn(['data', 'path'], newPath);
