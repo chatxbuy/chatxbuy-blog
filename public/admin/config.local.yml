@@ -47,3 +47,11 @@ collections:
           required: false,
           default: false,
         }
+      - {
+          label: 'Draft',
+          name: 'draft',
+          widget: 'boolean',
+          required: false,
+          default: true,
+          hint: '草稿狀態，勾選表示文章為草稿',
+        }
