@@ -9,22 +9,26 @@ export default defineEventHandler(async (event) => {
 
   const targetDate = targetArticle?.date;
 
-  const articles = await queryCollection(event, 'blog')
+  const allArticlesBefore = await queryCollection(event, 'blog')
     .where('date', '<', targetDate)
-    .where('draft', '<>', true)
-    .select('articleId', 'path', 'title', 'cover', 'date', 'pinned')
+    .select('articleId', 'path', 'title', 'cover', 'date', 'pinned', 'draft')
     .order('date', 'DESC') // sort by date
-    .limit(3)
     .all();
 
+  // Filter out drafts (draft === true)
+  const articles = allArticlesBefore.filter(article => article.draft !== true).slice(0, 3);
+
   if (articles.length < 3) {
-    const articlesMore = await queryCollection(event, 'blog')
+    const allArticlesAfter = await queryCollection(event, 'blog')
       .where('date', '>', targetDate)
-      .where('draft', '<>', true)
-      .select('articleId', 'path', 'title', 'cover', 'date', 'pinned')
+      .select('articleId', 'path', 'title', 'cover', 'date', 'pinned', 'draft')
       .order('date', 'DESC') // sort by date
-      .limit(3 - articles.length)
       .all();
+
+    // Filter out drafts (draft === true)
+    const articlesMore = allArticlesAfter
+      .filter(article => article.draft !== true)
+      .slice(0, 3 - articles.length);
 
     articles.push(...articlesMore);
   }

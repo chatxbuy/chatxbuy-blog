@@ -1,9 +1,11 @@
 export default defineEventHandler(async (event) => {
-  const articles = await queryCollection(event, 'blog')
-    .where('draft', '<>', true)
-    .select('articleId', 'path', 'title', 'cover', 'date', 'pinned')
+  const allArticles = await queryCollection(event, 'blog')
+    .select('articleId', 'path', 'title', 'cover', 'date', 'pinned', 'draft')
     .order('date', 'DESC') // sort by date
     .all();
+
+  // Filter out drafts (draft === true)
+  const articles = allArticles.filter(article => article.draft !== true);
 
   return articles;
 });
