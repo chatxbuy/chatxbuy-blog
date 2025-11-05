@@ -14,29 +14,36 @@
       CMS.registerEventListener({
         name: 'preSave',
         handler({ entry }) {
-          const data = entry.get('data');
-          const articleId = data.get('articleId') || '';
-          const title = data.get('title') || '';
-          const existingPath = data.get('path') || '';
+          try {
+            const data = entry.get('data');
+            if (!data) return entry;
 
-          // 只在 path 為空時生成
-          if (existingPath.trim()) return entry;
+            const articleId = data.get('articleId') || '';
+            const title = data.get('title') || '';
+            const existingPath = data.get('path') || '';
 
-          if (!articleId || !title) return entry;
+            // 只在 path 為空時生成
+            if (existingPath && existingPath.trim()) return entry;
 
-          const cleanTitle = title
-            .trim()
-            .normalize('NFKC')
-            .replace(
-              /[\s，。、；：？！""''（）【】《》〈〉『』「」—…·:;,.?!'"(){}\[\]\/\\]+/g,
-              '-'
-            )
-            .replace(/-+/g, '-')
-            .replace(/^-|-$/g, '')
-            .toLowerCase();
+            if (!articleId || !title) return entry;
 
-          const newPath = `/blog/${articleId}-${cleanTitle}`;
-          return entry.setIn(['data', 'path'], newPath);
+            const cleanTitle = title
+              .trim()
+              .normalize('NFKC')
+              .replace(
+                /[\s，。、；：？！""''（）【】《》〈〉『』「」—…·:;,.?!'"(){}\[\]\/\\]+/g,
+                '-'
+              )
+              .replace(/-+/g, '-')
+              .replace(/^-|-$/g, '')
+              .toLowerCase();
+
+            const newPath = `/blog/${articleId}-${cleanTitle}`;
+            return entry.setIn(['data', 'path'], newPath);
+          } catch (error) {
+            console.error('preSave error:', error);
+            return entry;
+          }
         },
       });
     </script>
