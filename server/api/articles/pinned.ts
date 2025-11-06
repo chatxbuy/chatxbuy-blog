@@ -5,8 +5,12 @@ export default defineEventHandler(async (event) => {
     .order('date', 'DESC')
     .all();
 
-  // Filter out drafts (draft === true)
-  const articles = allArticles.filter(article => article.draft !== true).slice(0, 3);
+  const now = new Date();
+
+  // Filter out drafts (draft === true) and future articles (date > now)
+  const articles = allArticles
+    .filter(article => article.draft !== true && new Date(article.date) <= now)
+    .slice(0, 3);
 
   return articles;
 });

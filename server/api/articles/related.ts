@@ -8,6 +8,7 @@ export default defineEventHandler(async (event) => {
     .first();
 
   const targetDate = targetArticle?.date;
+  const now = new Date();
 
   const allArticlesBefore = await queryCollection(event, 'blog')
     .where('date', '<', targetDate)
@@ -15,8 +16,10 @@ export default defineEventHandler(async (event) => {
     .order('date', 'DESC') // sort by date
     .all();
 
-  // Filter out drafts (draft === true)
-  const articles = allArticlesBefore.filter(article => article.draft !== true).slice(0, 3);
+  // Filter out drafts (draft === true) and future articles (date > now)
+  const articles = allArticlesBefore
+    .filter(article => article.draft !== true && new Date(article.date) <= now)
+    .slice(0, 3);
 
   if (articles.length < 3) {
     const allArticlesAfter = await queryCollection(event, 'blog')
@@ -25,9 +28,9 @@ export default defineEventHandler(async (event) => {
       .order('date', 'DESC') // sort by date
       .all();
 
-    // Filter out drafts (draft === true)
+    // Filter out drafts (draft === true) and future articles (date > now)
     const articlesMore = allArticlesAfter
-      .filter(article => article.draft !== true)
+      .filter(article => article.draft !== true && new Date(article.date) <= now)
       .slice(0, 3 - articles.length);
 
     articles.push(...articlesMore);

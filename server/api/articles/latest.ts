@@ -8,8 +8,12 @@ export default defineEventHandler(async (event) => {
     .order('date', 'DESC') // sort by date
     .all();
 
-  // Filter out drafts (draft === true)
-  const articles = allArticles.filter(article => article.draft !== true).slice(0, limit);
+  const now = new Date();
+
+  // Filter out drafts (draft === true) and future articles (date > now)
+  const articles = allArticles
+    .filter(article => article.draft !== true && new Date(article.date) <= now)
+    .slice(0, limit);
 
   return articles;
 });
