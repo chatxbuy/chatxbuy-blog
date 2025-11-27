@@ -10,7 +10,7 @@ export default defineContentConfig({
         draft: z.boolean(),
         title: z.string(),
         cover: z.string(),
-        date: z.string(),
+        date: z.string().datetime(),
         tags: z.array(z.string()),
         pinned: z.boolean(),
       }),

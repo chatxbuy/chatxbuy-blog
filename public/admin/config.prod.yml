@@ -45,7 +45,7 @@ collections:
           widget: 'datetime',
           date_format: 'YYYY-MM-DD',
           time_format: 'HH:mm',
-          format: 'YYYY-MM-DD HH:mm',
+          format: 'YYYY-MM-DDTHH:mm:ss.SSSZ',
         }
       - { label: 'Body', name: 'body', widget: 'markdown', required: false }
       - { label: 'Tags', name: 'tags', widget: 'list', required: false }
