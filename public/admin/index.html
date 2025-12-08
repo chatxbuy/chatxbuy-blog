@@ -19,28 +19,14 @@
             if (!data) return entry;
 
             const articleId = data.get('articleId') || '';
-            const title = data.get('title') || '';
             const existingPath = data.get('path') || '';
 
             // 只在 path 為空時生成
             if (existingPath && existingPath.trim()) return entry;
 
-            if (!articleId || !title) return entry;
+            if (!articleId) return entry;
 
-            const cleanTitle = title
-              .trim()
-              .normalize('NFKC')
-              .replace(
-                /[\s，。、；：？！""''（）【】《》〈〉『』「」—…·:;,.?!'"(){}\[\]\/\\]+/g,
-                '-'
-              )
-              .replace(/-+/g, '-')
-              .replace(/^-|-$/g, '');
-
-            // URL encode 中文字符和其他特殊字符
-            const encodedTitle = encodeURIComponent(cleanTitle);
-
-            const newPath = `/blog/${articleId}-${encodedTitle}`;
+            const newPath = `/blog/${articleId}`;
             return entry.setIn(['data', 'path'], newPath);
           } catch (error) {
             console.error('preSave error:', error);

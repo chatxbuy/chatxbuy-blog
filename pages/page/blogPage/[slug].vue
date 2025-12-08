@@ -7,36 +7,36 @@ const CHATXBUY_HOST = import.meta.env.VITE_CHATXBUY_HOST;
 const route = useRoute();
 
 // GET single article
-const part = route.params.slug.split('-');
-const id = part[0];
-const title = part.slice(1).join('-');
+// 只提取 articleId（取第一個 '-' 之前的部分）
+const slug = route.params.slug;
+const id = slug.split('-')[0];
+
+const { data: article, error: errorArticle } = await useAsyncData(
+  `article-${id}`,
+  async () => {
+    // 使用 articleId 查詢文章
+    const article = await queryCollection('blog')
+      .where('articleId', '=', id)
+      .first();
+    return article;
+  }
+);
 
 useHead({
-  title: title,
+  title: article.value?.title || '',
   meta: [
     {
       name: 'title',
-      content: title,
+      content: article.value?.title || '',
     },
   ],
   link: [
     {
       rel: 'canonical',
-      href: `https://blog.chatxbuy.com/page/blogPage/${id}-${title}`,
+      href: `https://blog.chatxbuy.com/page/blogPage/${id}`,
     },
   ],
 });
-
-const { data: article, error: errorArticle } = await useAsyncData(
-  `article-${id}`,
-  async () => {
-    // CMS blog
-    const encodedTitle = encodeURIComponent(title);
-    const path = `/blog/${id}-${encodedTitle}`;
-    const article = await queryCollection('blog').path(path).first();
-    return article;
-  }
-);
 
 // GET related articles
 const { data: articlesRelated, error: errorRelated } = await useAsyncData(
