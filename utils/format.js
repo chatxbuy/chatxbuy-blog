@@ -10,7 +10,7 @@ export const formatArticles = (articles) => {
     return articles.map((article) => {
       return {
         ...article,
-        path: article?.path.replace('/blog', '/page/blogPage'),
+        path: `/page/blogPage/${article?.articleId}`,
         date: formatDate(article?.date),
       };
     });

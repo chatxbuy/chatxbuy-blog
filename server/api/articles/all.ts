@@ -1,6 +1,6 @@
 export default defineEventHandler(async (event) => {
   const allArticles = await queryCollection(event, 'blog')
-    .select('articleId', 'path', 'title', 'cover', 'date', 'pinned', 'draft')
+    .select('articleId', 'title', 'cover', 'date', 'pinned', 'draft')
     .order('date', 'DESC') // sort by date
     .all();
 

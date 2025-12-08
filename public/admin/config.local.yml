@@ -35,7 +35,6 @@ collections:
         default: true,
         hint: '草稿狀態，勾選表示文章為草稿',
       }
-      - { label: 'Path', name: 'path', widget: 'hidden', required: false }
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Cover', name: 'cover', widget: 'image', required: false }
       - {

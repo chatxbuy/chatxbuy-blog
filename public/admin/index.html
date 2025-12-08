@@ -11,29 +11,7 @@
   <body>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     <script>
-      CMS.registerEventListener({
-        name: 'preSave',
-        handler({ entry }) {
-          try {
-            const data = entry.get('data');
-            if (!data) return entry;
-
-            const articleId = data.get('articleId') || '';
-            const existingPath = data.get('path') || '';
-
-            // 只在 path 為空時生成
-            if (existingPath && existingPath.trim()) return entry;
-
-            if (!articleId) return entry;
-
-            const newPath = `/blog/${articleId}`;
-            return entry.setIn(['data', 'path'], newPath);
-          } catch (error) {
-            console.error('preSave error:', error);
-            return entry;
-          }
-        },
-      });
+      // preSave 邏輯已移除，path 欄位已不再需要
     </script>
   </body>
 </html>

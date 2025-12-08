@@ -3,11 +3,11 @@ import type { SitemapUrlInput } from '#sitemap/types';
 
 export default defineSitemapEventHandler(async (event) => {
   const articles = await queryCollection(event, 'blog')
-    .select('path', 'title', 'cover', 'date')
+    .select('articleId', 'title', 'cover', 'date')
     .all();
 
   return articles.map((article) => ({
-    loc: decodeURIComponent(article.path).replace('/blog', '/page/blogPage'),
+    loc: `/page/blogPage/${article.articleId}`,
     lastmod: article.date,
     images: [
       {
