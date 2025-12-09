@@ -19,6 +19,7 @@ collections:
     create: true
     slug: '{{articleId}}'
     format: frontmatter
+    summary: "{{title}} ({{date | date('YYYY-MM-DD')}} 發佈)"
     editor:
       preview: false
     fields:
