@@ -1,20 +1,34 @@
 export default defineEventHandler((event) => {
   const url = event.node.req.url || '';
+  const path = url.split('?')[0]; // 移除 query string
 
-  // 匹配舊版 /blog/{articleId}-{title} 格式的 URL
-  if (url.startsWith('/blog/')) {
-    const slug = url.replace('/blog/', '').split('?')[0]; // 移除 query string
+  // 情況 1: 舊版 /blog/{articleId}-{title} 格式
+  if (path.startsWith('/blog/')) {
+    const slug = path.replace('/blog/', '');
 
     if (slug) {
-      // 提取 articleId（取第一個 `-` 之前的部分）
       const articleId = slug.split('-')[0];
 
       if (articleId) {
-        const newUrl = `/page/blogPage/${articleId}`;
-
-        // 發送 301 永久重定向
         event.node.res.statusCode = 301;
-        event.node.res.setHeader('Location', newUrl);
+        event.node.res.setHeader('Location', `/page/blogPage/${articleId}`);
+        event.node.res.end();
+        return;
+      }
+    }
+  }
+
+  // 情況 2: 舊版 /page/blogPage/{articleId}-{title} 格式（帶標題）
+  if (path.startsWith('/page/blogPage/')) {
+    const slug = path.replace('/page/blogPage/', '');
+
+    // 如果 slug 包含 '-'，表示是舊版帶標題的 URL
+    if (slug && slug.includes('-')) {
+      const articleId = slug.split('-')[0];
+
+      if (articleId) {
+        event.node.res.statusCode = 301;
+        event.node.res.setHeader('Location', `/page/blogPage/${articleId}`);
         event.node.res.end();
         return;
       }
