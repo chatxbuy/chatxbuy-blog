@@ -11,7 +11,30 @@
   <body>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     <script>
-      // preSave 邏輯已移除，path 欄位已不再需要
+      // 註冊 preSave 事件處理器
+      CMS.registerEventListener({
+        name: 'preSave',
+        handler: ({ entry }) => {
+          // 處理 date 欄位，確保轉換為 UTC 格式
+          const data = entry.get('data');
+
+          if (data.has('date')) {
+            const dateValue = data.get('date');
+
+            // 如果 date 值存在，轉換為 UTC 格式
+            if (dateValue) {
+              const date = new Date(dateValue);
+              // 使用 toISOString() 將日期轉換為 UTC 格式 (例如: 2021-05-27T09:31:16.000Z)
+              const utcDate = date.toISOString();
+
+              // 更新 entry 中的 date 欄位
+              return entry.setIn(['data', 'date'], utcDate);
+            }
+          }
+
+          return entry;
+        }
+      });
     </script>
   </body>
 </html>
