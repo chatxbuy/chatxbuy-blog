@@ -11,24 +11,95 @@
   <body>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     <script>
+      function extractDescription(body) {
+        if (!body || !body.trim()) return '';
+
+        var MAX_LENGTH = 155;
+        var lines = body.split('\n').slice(0, 50);
+
+        for (var i = 0; i < lines.length; i++) {
+          var line = lines[i].trim();
+          if (!line) continue;
+          // 跳過 Markdown 圖片
+          if (/^!\[.*\]\(.*\)/.test(line)) continue;
+          // 跳過 Markdown 標題
+          if (/^#{1,6}\s/.test(line)) continue;
+          // 跳過 HTML 圖片標籤
+          if (/^<img\b/i.test(line)) continue;
+          // 跳過 <hr> 或 ---
+          if (/^<hr\s*\/?>$/i.test(line) || /^-\s*-\s*-\s*$/.test(line))
+            continue;
+          // 跳過空白 HTML 元素
+          if (/^<p>\s*(&nbsp;|\s)*<\/p>$/i.test(line)) continue;
+
+          // 清理 HTML 標籤
+          var cleaned = line.replace(/<[^>]*>/g, '');
+          // 清理 Markdown 連結語法
+          cleaned = cleaned.replace(/\[([^\]]*)\]\([^)]*\)/g, '$1');
+          // 清理粗體/斜體
+          cleaned = cleaned.replace(/(\*{1,2}|_{1,2})([^*_]+)\1/g, '$2');
+          // 清理 HTML entities
+          cleaned = cleaned
+            .replace(/&nbsp;/g, ' ')
+            .replace(/&amp;/g, '&')
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&quot;/g, '"')
+            .replace(/&#39;/g, "'")
+            .replace(/&[a-zA-Z0-9#]+;/g, '');
+          cleaned = cleaned.replace(/\s+/g, ' ').trim();
+
+          if (cleaned.length < 10) continue;
+
+          // 截斷至 MAX_LENGTH
+          if (cleaned.length <= MAX_LENGTH) return cleaned;
+
+          var truncated = cleaned.slice(0, MAX_LENGTH);
+          var lastBreak = Math.max(
+            truncated.lastIndexOf('\u3002'),
+            truncated.lastIndexOf('\uff01'),
+            truncated.lastIndexOf('\uff1f'),
+            truncated.lastIndexOf('. '),
+          );
+          if (lastBreak > MAX_LENGTH * 0.5)
+            return truncated.slice(0, lastBreak + 1).trim();
+
+          var lastComma = Math.max(
+            truncated.lastIndexOf('\uff0c'),
+            truncated.lastIndexOf('\u3001'),
+            truncated.lastIndexOf(', '),
+          );
+          if (lastComma > MAX_LENGTH * 0.5)
+            return truncated.slice(0, lastComma + 1).trim();
+
+          return truncated.trim();
+        }
+        return '';
+      }
+
       // 註冊 preSave 事件處理器
       CMS.registerEventListener({
-        name: "preSave",
+        name: 'preSave',
         handler: ({ entry }) => {
+          var data = entry.get('data');
+
           // 處理 date 欄位，確保轉換為 UTC 格式
-          const data = entry.get("data");
-
-          if (data.has("date")) {
-            const dateValue = data.get("date");
-
-            // 如果 date 值存在，轉換為 UTC 格式
+          if (data.has('date')) {
+            var dateValue = data.get('date');
             if (dateValue) {
-              const date = new Date(dateValue);
-              // 使用 toISOString() 將日期轉換為 UTC 格式 (例如: 2021-05-27T09:31:16.000Z)
-              const utcDate = date.toISOString();
+              var date = new Date(dateValue);
+              var utcDate = date.toISOString();
+              entry = entry.setIn(['data', 'date'], utcDate);
+            }
+          }
 
-              // 更新 entry 中的 date 欄位
-              return entry.setIn(["data", "date"], utcDate);
+          // 自動生成 description（僅在未手動填寫時）
+          var description = data.get('description');
+          if (!description || !description.trim()) {
+            var body = data.get('body') || '';
+            var generated = extractDescription(body);
+            if (generated) {
+              entry = entry.setIn(['data', 'description'], generated);
             }
           }
 
