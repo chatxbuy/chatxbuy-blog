@@ -1,15 +1,15 @@
 <script setup>
-import { subscribeBlog } from '@/apis/blog';
+import { subscribeBlog } from "@/apis/blog";
 import {
   TransitionRoot,
   TransitionChild,
   Dialog,
   DialogPanel,
   DialogTitle,
-} from '@headlessui/vue';
+} from "@headlessui/vue";
 
-const nickName = ref('');
-const email = ref('');
+const nickName = ref("");
+const email = ref("");
 
 // Modal Control
 const isOpen = ref(false);

@@ -1,10 +1,10 @@
-import { defineContentConfig, defineCollection, z } from '@nuxt/content';
+import { defineContentConfig, defineCollection, z } from "@nuxt/content";
 
 export default defineContentConfig({
   collections: {
     blog: defineCollection({
-      type: 'page',
-      source: '**/*.md',
+      type: "page",
+      source: "**/*.md",
       schema: z.object({
         articleId: z.string(),
         draft: z.boolean(),

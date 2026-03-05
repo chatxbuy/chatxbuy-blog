@@ -1,7 +1,7 @@
 <script setup>
-import '@/assets/css/blog.css';
-import { useRoute } from 'vue-router';
-import { formatArticles } from '@/utils/format';
+import "@/assets/css/blog.css";
+import { useRoute } from "vue-router";
+import { formatArticles } from "@/utils/format";
 
 const CHATXBUY_HOST = import.meta.env.VITE_CHATXBUY_HOST;
 const route = useRoute();
@@ -9,44 +9,55 @@ const route = useRoute();
 // GET single article
 // 只提取 articleId（取第一個 '-' 之前的部分）
 const slug = route.params.slug;
-const id = slug.split('-')[0];
+const id = slug.split("-")[0];
 
 const { data: article, error: errorArticle } = await useAsyncData(
   `article-${id}`,
   async () => {
     // 使用 articleId 查詢文章
-    const article = await queryCollection('blog')
-      .where('articleId', '=', id)
+    const article = await queryCollection("blog")
+      .where("articleId", "=", id)
       .first();
     return article;
-  }
+  },
 );
 
+const pageTitle = article.value?.title || "";
+const pageDescription = article.value?.description || pageTitle;
+const pageUrl = `https://blog.chatxbuy.com/page/blogPage/${id}`;
+const pageImage = article.value?.cover
+  ? `https://blog.chatxbuy.com${article.value.cover}`
+  : undefined;
+
 useHead({
-  title: article.value?.title || '',
-  meta: [
-    {
-      name: 'title',
-      content: article.value?.title || '',
-    },
-  ],
+  title: pageTitle,
   link: [
     {
-      rel: 'canonical',
-      href: `https://blog.chatxbuy.com/page/blogPage/${id}`,
+      rel: "canonical",
+      href: pageUrl,
     },
   ],
+});
+
+useSeoMeta({
+  description: pageDescription,
+  ogTitle: pageTitle,
+  ogDescription: pageDescription,
+  ogUrl: pageUrl,
+  ogType: "article",
+  ogImage: pageImage,
+  ogSiteName: "代買幫 CHATxBUY",
 });
 
 // GET related articles
 const { data: articlesRelated, error: errorRelated } = await useAsyncData(
   `article-related-${id}`,
   async () => {
-    const res = await $fetch('/api/articles/related', {
+    const res = await $fetch("/api/articles/related", {
       query: { id },
     });
     return formatArticles(res);
-  }
+  },
 );
 </script>
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -13,13 +13,13 @@
     <script>
       // 註冊 preSave 事件處理器
       CMS.registerEventListener({
-        name: 'preSave',
+        name: "preSave",
         handler: ({ entry }) => {
           // 處理 date 欄位，確保轉換為 UTC 格式
-          const data = entry.get('data');
+          const data = entry.get("data");
 
-          if (data.has('date')) {
-            const dateValue = data.get('date');
+          if (data.has("date")) {
+            const dateValue = data.get("date");
 
             // 如果 date 值存在，轉換為 UTC 格式
             if (dateValue) {
@@ -28,12 +28,12 @@
               const utcDate = date.toISOString();
 
               // 更新 entry 中的 date 欄位
-              return entry.setIn(['data', 'date'], utcDate);
+              return entry.setIn(["data", "date"], utcDate);
             }
           }
 
           return entry;
-        }
+        },
       });
     </script>
   </body>

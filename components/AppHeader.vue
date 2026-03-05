@@ -1,16 +1,16 @@
 <script setup>
-import '@/assets/css/header.css';
-import { ref, onMounted } from 'vue';
-import { getExchangeRate } from '@/apis/exchangeRate';
+import "@/assets/css/header.css";
+import { ref, onMounted } from "vue";
+import { getExchangeRate } from "@/apis/exchangeRate";
 
 const CHATXBUY_HOST = import.meta.env.VITE_CHATXBUY_HOST;
 const rate = ref(null);
 
 const goChatbot = () => {
   if (localStorage.utm_ref != null) {
-    window.open('https://m.me/chatXbuy?ref=' + localStorage.utm_ref);
+    window.open("https://m.me/chatXbuy?ref=" + localStorage.utm_ref);
   } else {
-    window.open('https://m.me/chatXbuy');
+    window.open("https://m.me/chatXbuy");
   }
 };
 

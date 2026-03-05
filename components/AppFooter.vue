@@ -1,5 +1,5 @@
 <script setup>
-import '@/assets/css/footer.css';
+import "@/assets/css/footer.css";
 const CHATXBUY_HOST = import.meta.env.VITE_CHATXBUY_HOST;
 </script>
 

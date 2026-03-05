@@ -1,6 +1,6 @@
 export const formatDate = (dateString) => {
-  const date = new Date(dateString).toLocaleString('zh-TW', {
-    dateStyle: 'short',
+  const date = new Date(dateString).toLocaleString("zh-TW", {
+    dateStyle: "short",
   });
   return date;
 };

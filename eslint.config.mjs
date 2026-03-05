@@ -1,25 +1,25 @@
 // @ts-check
-import withNuxt from './.nuxt/eslint.config.mjs';
+import withNuxt from "./.nuxt/eslint.config.mjs";
 
 export default withNuxt({
   rules: {
-    'no-unused-vars': [
-      'warn',
+    "no-unused-vars": [
+      "warn",
       {
-        vars: 'all',
-        args: 'after-used',
-        caughtErrors: 'all',
+        vars: "all",
+        args: "after-used",
+        caughtErrors: "all",
         ignoreRestSiblings: false,
         reportUsedIgnorePattern: false,
       },
     ],
 
-    'vue/html-self-closing': 'off',
+    "vue/html-self-closing": "off",
   },
 
   languageOptions: {
     globals: {
-      queryCollection: 'readonly',
+      queryCollection: "readonly",
     },
   },
 });

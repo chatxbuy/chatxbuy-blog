@@ -1,30 +1,30 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import tailwindcss from '@tailwindcss/vite';
+import tailwindcss from "@tailwindcss/vite";
 
-const HOST = 'https://blog.chatxbuy.com';
+const HOST = "https://blog.chatxbuy.com";
 
 export default defineNuxtConfig({
   site: {
     url: HOST,
-    name: 'ChatXBuy Blog CMS',
+    name: "ChatXBuy Blog CMS",
   },
 
   app: {
     head: {
-      title: 'ChatXBuy Blog CMS',
+      title: "ChatXBuy Blog CMS",
       meta: [
         {
-          name: 'description',
-          content: 'ChatXBuy Blog Content Management System',
+          name: "description",
+          content: "ChatXBuy Blog Content Management System",
         },
       ],
     },
   },
 
-  compatibilityDate: '2025-05-22',
-  css: ['~/assets/css/main.css'],
+  compatibilityDate: "2025-05-22",
+  css: ["~/assets/css/main.css"],
   devtools: { enabled: true },
-  modules: ['@nuxt/eslint', '@nuxt/content', '@nuxtjs/sitemap'],
+  modules: ["@nuxt/eslint", "@nuxt/content", "@nuxtjs/sitemap"],
 
   vite: {
     plugins: [tailwindcss()],
@@ -37,7 +37,7 @@ export default defineNuxtConfig({
   },
 
   sitemap: {
-    sources: ['/api/__sitemap__/urls'],
-    exclude: ['/', '/admin'],
+    sources: ["/api/__sitemap__/urls"],
+    exclude: ["/", "/admin"],
   },
 });
