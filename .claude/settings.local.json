@@ -5,7 +5,9 @@
       "Bash(node:*)",
       "Bash(find:*)",
       "WebSearch",
-      "WebFetch(domain:blog.chatxbuy.com)"
+      "WebFetch(domain:blog.chatxbuy.com)",
+      "Bash(grep:*)",
+      "Bash(ls:*)"
     ],
     "deny": [],
     "ask": []
