@@ -5,7 +5,7 @@
 - 本專案是主專案 `../officailwebsite`（網域：chatxbuy.com）的子專案
 - 本專案網域：**blog.chatxbuy.com**
 - 本專案只負責：提供所有文章頁面、部落格專用的 sitemap
-- `robots.txt` 由主專案管理，不在本專案範圍內
+- 本專案有自己的 `robots.txt`（`public/robots.txt`），因為 subdomain 各自獨立管理
 
 ## 套件管理
 
