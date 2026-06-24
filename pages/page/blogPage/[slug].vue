@@ -90,19 +90,21 @@ const { data: articlesRelated, error: errorRelated } = await useAsyncData(
 
     <section class="section-container-page">
       <div class="flex max-lg:flex-col max-lg:items-center">
-        <div class="lg:w-[710px] grow">
+        <main class="lg:w-[710px] grow">
           <!-- Article content -->
-          <section :class="['text-primary px-4 pt-10 font-bold ', 'text-2xl ']">
-            {{ article?.title }}
-          </section>
+          <article>
+            <h1 :class="['text-primary px-4 pt-10 font-bold ', 'text-2xl ']">
+              {{ article?.title }}
+            </h1>
 
-          <section v-if="article" class="html-content">
-            <ContentRenderer
-              v-if="article"
-              :value="article"
-              class="prose prose-neutral"
-            />
-          </section>
+            <section v-if="article" class="html-content">
+              <ContentRenderer
+                v-if="article"
+                :value="article"
+                class="prose prose-neutral"
+              />
+            </section>
+          </article>
 
           <section style="padding-block: 64px">
             <a
@@ -144,9 +146,9 @@ const { data: articlesRelated, error: errorRelated } = await useAsyncData(
               </div>
             </div>
           </div>
-        </div>
+        </main>
 
-        <div class="w-88 lg:mx-10">
+        <aside class="w-88 lg:mx-10">
           <!-- 訂閱代買幫Blog -->
           <div class="my-10">
             <BlogSubscribeDesktop />
@@ -182,7 +184,7 @@ const { data: articlesRelated, error: errorRelated } = await useAsyncData(
               成立於2019年的台灣團隊，從下單、賣家溝通、國際集運到商品抵達，代買幫都一手包辦。讓您可以享受無憂的1688代買體驗。
             </p>
           </div>
-        </div>
+        </aside>
       </div>
     </section>
   </div>
