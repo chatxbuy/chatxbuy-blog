@@ -39,6 +39,13 @@ const pageImage = article.value?.cover
   ? `https://blog.chatxbuy.com${article.value.cover}`
   : undefined;
 
+// 麵包屑：首頁 › 部落格 › {文章標題}（前兩層跨網域回主站，末層為本文 canonical）
+const breadcrumbItems = computed(() => [
+  { label: "首頁", href: `${CHATXBUY_HOST}/` },
+  { label: "部落格", href: `${CHATXBUY_HOST}/page/blogList` },
+  { label: article.value?.title || "文章", href: pageUrl },
+]);
+
 useHead({
   title: pageTitle,
   link: [
@@ -89,6 +96,9 @@ const { data: articlesRelated, error: errorRelated } = await useAsyncData(
     </section>
 
     <section class="section-container-page">
+      <!-- 麵包屑（容器頂端） -->
+      <AppBreadcrumbs :items="breadcrumbItems" />
+
       <div class="flex max-lg:flex-col max-lg:items-center">
         <main class="lg:w-[710px] grow">
           <!-- Article content -->
