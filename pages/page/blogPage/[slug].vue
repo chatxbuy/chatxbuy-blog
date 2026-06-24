@@ -22,6 +22,16 @@ const { data: article, error: errorArticle } = await useAsyncData(
   },
 );
 
+// 查詢成功但找不到文章 → 確定為無效 ID，回傳 410 Gone（永久不存在）
+// 若 errorArticle 有值代表查詢本身出錯（一時性錯誤），無法斷定 ID 無效，不回 410
+if (!errorArticle.value && !article.value) {
+  throw createError({
+    statusCode: 410,
+    statusMessage: "Gone",
+    fatal: true,
+  });
+}
+
 const pageTitle = article.value?.title || "";
 const pageDescription = article.value?.description || pageTitle;
 const pageUrl = `https://blog.chatxbuy.com/page/blogPage/${id}`;
