@@ -77,6 +77,17 @@
         return '';
       }
 
+      // 內文標題正規化：body 內不應出現 <h1>（頁面唯一 h1 是文章標題），
+      // 一律降級為 <h2>，保留原有屬性。
+      function demoteBodyH1(body) {
+        if (!body) return body;
+        return body
+          .replace(/<h1(\s[^>]*)?>/gi, function (m, attrs) {
+            return '<h2' + (attrs || '') + '>';
+          })
+          .replace(/<\/h1>/gi, '</h2>');
+      }
+
       // 註冊 preSave 事件處理器
       CMS.registerEventListener({
         name: 'preSave',
@@ -93,10 +104,17 @@
             }
           }
 
+          // 內文標題正規化：移除 body 內誤用的 <h1>，降級為 <h2>
+          var body = data.get('body') || '';
+          var demoted = demoteBodyH1(body);
+          if (demoted !== body) {
+            body = demoted;
+            entry = entry.setIn(['data', 'body'], body);
+          }
+
           // 自動生成 description（僅在未手動填寫時）
           var description = data.get('description');
           if (!description || !description.trim()) {
-            var body = data.get('body') || '';
             var generated = extractDescription(body);
             if (generated) {
               entry = entry.setIn(['data', 'description'], generated);
